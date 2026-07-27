@@ -45,7 +45,7 @@ services:
       - SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH=true
       - SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE=true
       - SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_REQUIRED=true
-      - JAVA_TOOL_OPTIONS=-Dcrm.jwt.base64-secret=${JWT_SECRET_KEY}
+      - JAVA_TOOL_OPTIONS=-Dcrm.jwt.base64-secret=${JWT_SECRET_KEY} -Dcrm.jwt.token-validity-in-seconds=86400 -Dcrm.upload.path=uploads -Dcrm.appointment.reminder-window-minutes=30 -Dcrm.scheduler.delay-ms=900000
     ports:
       - "8080:8080"
     depends_on:
