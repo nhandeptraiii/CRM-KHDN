@@ -5,7 +5,6 @@ WORKDIR /app
 COPY gradlew .
 COPY gradle gradle
 COPY build.gradle.kts .
-COPY settings.gradle.kts .
 # Grant execution rights to the gradlew script
 RUN chmod +x gradlew
 # Download dependencies (this step will be cached)
