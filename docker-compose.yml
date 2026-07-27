@@ -45,6 +45,9 @@ services:
       - SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH=true
       - SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE=true
       - SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_REQUIRED=true
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_SHOW_SQL=true
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQLDialect
       - JAVA_TOOL_OPTIONS=-Dcrm.jwt.base64-secret=${JWT_SECRET_KEY} -Dcrm.jwt.token-validity-in-seconds=86400 -Dcrm.upload.path=uploads -Dcrm.appointment.reminder-window-minutes=30 -Dcrm.scheduler.delay-ms=900000
     ports:
       - "8080:8080"
@@ -69,4 +72,5 @@ services:
 
 volumes:
   crm_mysql_data:
-    driver: local
+    external: true
+    name: crm-deploy_crm_db_data
