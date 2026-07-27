@@ -29,13 +29,18 @@ services:
     container_name: crm_backend
     environment:
       - SPRING_PROFILES_ACTIVE=prod
-      # Point to the CRM database on port 3306 of the host
       - SPRING_DATASOURCE_URL=jdbc:mysql://crm_mysql:3306/crm_db?useSSL=false&allowPublicKeyRetrieval=true&connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME:-root}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
       - DB_USERNAME=${DB_USERNAME:-root}
       - DB_PASSWORD=${DB_PASSWORD}
       - JWT_SECRET_KEY=${JWT_SECRET_KEY}
     ports:
       - "8080:8080"
+    depends_on:
+      crm_mysql:
+        condition: service_healthy
     restart: always
 
   crm_frontend:
