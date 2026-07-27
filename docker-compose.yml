@@ -30,7 +30,7 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=prod
       # Point to the CRM database on port 3306 of the host
-      - DB_URL=jdbc:mysql://171.254.92.12:3306/crm_db?useSSL=false&allowPublicKeyRetrieval=true&connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true
+      - SPRING_DATASOURCE_URL=jdbc:mysql://crm_mysql:3306/crm_db?useSSL=false&allowPublicKeyRetrieval=true&connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true
       - DB_USERNAME=${DB_USERNAME:-root}
       - DB_PASSWORD=${DB_PASSWORD}
       - JWT_SECRET_KEY=${JWT_SECRET_KEY}
