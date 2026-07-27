@@ -10,7 +10,7 @@ description = "Hệ thống quản lý khách hàng và dịch vụ Viettel."
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
+		languageVersion = JavaLanguageVersion.of(21)
 	}
 }
 
