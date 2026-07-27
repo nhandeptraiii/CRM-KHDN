@@ -1,0 +1,404 @@
+$primary: #4f46e5;
+$primary-hover: #4338ca;
+$text-main: #111827;
+$text-label: #374151;
+$border: #d1d5db;
+$error: #ef4444;
+$bg-input: #f9fafb;
+$bg-overlay: rgba(17, 24, 39, 0.42);
+
+.modal {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(15, 23, 42, 0.5); // đậm hơn
+  backdrop-filter: blur(4px); // 👈 làm mờ cả sidebar
+
+  z-index: 9999; // 👈 cao hơn tất cả layout
+
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s ease;
+
+  &.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.modal-box.users-modal {
+
+    width: min(980px, calc(100vw - 24px));
+  max-width: 100%;
+  max-height: 92vh;
+  background: #ffffff;
+  max-height: 92vh;
+  overflow: auto;
+  border-radius: 16px;
+  padding: 28px;
+
+  h3 {
+    margin: 0 0 18px;
+    font-size: 22px;
+    font-weight: 700;
+    color: $text-main;
+  }
+}
+
+.section-title {
+  margin: 8px 0 14px;
+  padding-left: 10px;
+  border-left: 4px solid #ee0033;
+  color: #1f2937;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.form-hint-warning {
+  margin: -4px 0 14px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #fff7ed;
+  color: #9a3412;
+  font-size: 13px;
+  border: 1px solid #fed7aa;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+  margin-bottom: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+    position: relative;
+
+
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: $text-label;
+
+    .required {
+      color: $error;
+      margin-left: 2px;
+    }
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid $border;
+    font-size: 14px;
+    color: $text-main;
+    background-color: $bg-input;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    resize: vertical;
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      background-color: #fff;
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      background: #f3f4f6;
+      color: #6b7280;
+    }
+
+    &.input-error {
+      border-color: $error;
+      background-color: #fef2f2;
+
+      &:focus {
+        box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+      }
+    }
+  }
+
+  textarea {
+    min-height: 76px;
+  }
+}
+.select-dropdown {
+  position: absolute;
+  top: 100%; /* nằm dưới input */
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-top: 4px;
+  max-height: 250px;
+  overflow: hidden;
+}
+
+.options {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.error-text {
+  color: $error;
+  font-size: 13px;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.link-add-contact-btn {
+  margin-top: 8px;
+  align-self: flex-start;
+  border: none;
+  background: transparent;
+  color: $primary;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    color: $primary-hover;
+    text-decoration: underline;
+  }
+}
+
+.contact-inline-module {
+  border: 1px solid #fee2e2;
+  background: #fff7f7;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.contact-inline-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+
+  strong {
+    color: #991b1b;
+    font-size: 14px;
+  }
+
+  span {
+    color: #b91c1c;
+    font-size: 13px;
+  }
+}
+
+.contact-inline-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 14px;
+}
+
+.inline-checkbox {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 500;
+
+  input {
+    width: 16px;
+    height: 16px;
+    accent-color: $primary;
+  }
+}
+
+.contact-inline-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+
+  .cancel-inline-btn {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      background: #e5e7eb;
+    }
+
+    &:disabled {
+      color: #9ca3af;
+      background: #f3f4f6;
+      cursor: not-allowed;
+    }
+  }
+
+  .save-btn {
+    background: $primary;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      background: $primary-hover;
+    }
+
+    &:disabled {
+      background: #c7d2fe;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.timeline-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px 16px;
+  align-items: start;
+}
+
+.modal-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
+  button {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+  }
+
+  .cancel-btn {
+    background: #f3f4f6;
+    color: #4b5563;
+  }
+
+  .save-btn {
+    background: $primary;
+    color: #fff;
+
+    &:hover {
+      background: $primary-hover;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .modal-box.users-modal {
+    width: 94vw;
+    padding: 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-inline-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.react-datepicker {
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.react-datepicker__header {
+  background: #EE0033;
+  color: #fff;
+}
+
+.react-datepicker__day--selected {
+  background: #EE0033;
+  color: #fff;
+}
+
+.react-datepicker__time-list-item--selected {
+  background: #EE0033 !important;
+}
+.usage-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.usage-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fafafa;
+  position: relative;
+}
+
+.usage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  label {
+    font-size: 12px;
+    color: #6b7280;
+  }
+
+  input,
+  select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+  }
+}
+
+.remove-btn {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+
+.add-btn {
+  // margin-top: 10px;
+  background: #EE0033;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+}

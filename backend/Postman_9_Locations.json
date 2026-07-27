@@ -1,0 +1,68 @@
+{
+  "info": {
+    "name": "9. CRM Locations (Tỉnh Cụm Xã)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "9.1 Lấy danh sách Cụm theo Tỉnh",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/locations/clusters?region=CTO",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "locations",
+            "clusters"
+          ],
+          "query": [
+            {
+              "key": "region",
+              "value": "CTO"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "9.2 Lấy danh sách Xã theo Cụm",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/locations/communes?clusterId=1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "locations",
+            "communes"
+          ],
+          "query": [
+            {
+              "key": "clusterId",
+              "value": "1"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+.login-page {
+  height: 100vh;
+  width: 100%;
+  //background: linear-gradient(135deg, #c8102e, #ff4d4f);
+  // background-image: url("../../assets/images/ViettelBuilding.jpg");
+  background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('../../assets/images/ViettelBuilding.jpg');
+  backdrop-filter: blur(6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.login-card {
+  width: 380px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 40px 35px;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+  text-align: center;
+}
+
+.login-logo img {
+  width: 150px;
+}
+
+.login-card h2 {
+  margin-bottom: 5px;
+  color: #c8102e;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group input {
+  width: 90%;
+  padding: 12px 14px;
+
+  border-radius: 6px;
+  border: 1px solid #ddd;
+
+  font-size: 14px;
+
+  transition: all 0.25s;
+}
+
+.form-group input:focus {
+  border-color: #c8102e;
+  outline: none;
+
+  box-shadow: 0 0 0 2px rgba(200,16,46,0.1);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+
+  background: #c8102e;
+  color: #fff;
+
+  border: none;
+  border-radius: 6px;
+
+  font-weight: 600;
+  font-size: 15px;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.login-btn:hover {
+  background: #a50e25;
+}
+.Toastify__toast {
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+.Toastify__close-button {
+  align-self: center;
+  font-size: 18px;
+}
+
+.Toastify__toast--success {
+  background: #16a34a;
+}
+
+.Toastify__toast--error {
+  background: #dc2626;
+}

@@ -1,0 +1,311 @@
+/* =========================
+   Variables (Giữ nguyên)
+========================= */
+$primary: #ee0033;
+$primary-light: #fef2f2;
+$text-main: #111827;
+$text-muted: #6b7280;
+$border: #e5e7eb;
+$bg-table: #ffffff;
+$bg-hover: #f9fafb;
+$danger: #ef4444;
+$danger-light: #fef2f2;
+
+.table-container {
+  background: $bg-table;
+  border-radius: 12px;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  border: 1px solid $border;
+  overflow-x: auto;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  margin-top: 20px;
+}
+
+.employee-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+
+  th,
+  td {
+    padding: 16px 20px;
+    border-bottom: 1px solid $border;
+    vertical-align: middle;
+    text-align: center;
+    /* Luôn căn giữa dữ liệu */
+  }
+
+  .text-left {
+    text-align: left !important;
+    padding-left: 24px;
+
+    &.sortable {
+      display: table-cell;
+    }
+  }
+
+  /* Style cho cột có thể sắp xếp */
+  th.sortable {
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+
+    &:hover {
+      background-color: #f1f5f9;
+      color: $primary;
+    }
+
+    .sort-arrow {
+      color: #cbd5e1;
+      margin-left: 4px;
+      font-size: 12px;
+    }
+  }
+
+  th {
+    background-color: #f9fafb;
+    color: $text-muted;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  tbody tr {
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: $bg-hover;
+    }
+
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+
+  .font-medium {
+    font-weight: 500;
+    color: $text-main;
+  }
+
+  td {
+    color: #374151;
+  }
+}
+
+.role-badge,
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 100px;
+}
+
+.role-badge {
+  &.admin {
+    background: #f3e8ff;
+    color: #7e22ce;
+  }
+
+  &.consultant {
+    background: #dcfce7;
+    color: #15803d;
+  }
+
+  &.staff {
+    background: #e0f2fe;
+    color: #0369a1;
+  }
+}
+
+.status-badge {
+  &.active {
+    background: #dcfce7;
+    color: #15803d;
+  }
+
+  &.inactive {
+    background: #fee2e2;
+    color: #b91c1c;
+  }
+}
+
+.action-btns {
+  /* Ép thành khối inline để nằm cùng dòng với chữ và được thẻ td căn giữa */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  vertical-align: middle;
+
+  button {
+    border: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0;
+    margin: 0;
+    /* Khử margin rác đẩy nút trượt xuống */
+
+    svg {
+      width: 16px;
+      height: 16px;
+      display: block;
+    }
+  }
+
+  .edit-btn {
+    background: #e0e7ff;
+    color: #4f46e5;
+
+    &:hover {
+      background: #c7d2fe;
+      transform: translateY(-1px);
+    }
+  }
+
+  .view-btn {
+    background: #fef3c7;
+    /* Nền vàng nhạt tinh tế */
+    color: #d97706;
+    /* Chữ vàng đậm cam (tương phản tốt, dễ đọc) */
+
+    &:hover {
+      background: #fde68a;
+      /* Nền đậm lên một chút khi di chuột vào */
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px !important;
+  color: $text-muted;
+  font-style: italic;
+}
+
+/* =========================
+   PAGINATION (PHÂN TRANG - BẢN NÂNG CẤP)
+========================= */
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  /* Ép toàn bộ cụm phân trang dạt sang lề phải */
+  align-items: center;
+  padding: 16px 20px;
+  gap: 12px;
+  border-top: 1px solid $border;
+  background-color: white;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+
+  /* Nút Trước / Sau */
+  .page-btn {
+    height: 36px;
+    padding: 0 16px;
+    background-color: white;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+
+    /* BÙA CHÚ CHỐNG DÃN: Ép nút chỉ to bằng nội dung */
+    width: auto !important;
+    min-width: max-content;
+    flex: 0 0 auto !important;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+
+    &:hover:not(:disabled) {
+      background-color: #f9fafb;
+      border-color: #9ca3af;
+      color: $text-main;
+    }
+
+    &:disabled {
+      color: #9ca3af;
+      background-color: #f3f4f6;
+      border-color: #e5e7eb;
+      cursor: not-allowed;
+    }
+  }
+
+  /* Cụm số trang */
+  .page-numbers {
+    display: flex;
+    gap: 6px;
+
+    .page-num {
+      width: 36px;
+      /* Vuông vức tăm tắp */
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: transparent;
+      font-size: 13px;
+      font-weight: 500;
+      color: #4b5563;
+      cursor: pointer;
+      transition: all 0.2s;
+      padding: 0;
+      margin: 0;
+
+      &:hover:not(.active) {
+        background-color: #f3f4f6;
+      }
+
+      /* TRANG HIỆN TẠI: Đỏ nổi bật */
+      &.active {
+        background-color: $primary;
+        color: white;
+        font-weight: 600;
+        box-shadow: 0 2px 6px rgba(238, 0, 51, 0.25);
+        /* Đổ bóng đỏ cho sang */
+      }
+    }
+  }
+}
+
+.employee-name-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.employee-inactive-text {
+  font-size: 12px;
+  color: red;
+  margin-top: 2px;
+}
+.cluster-name {
+  font-weight: 600;
+}
+
+.commune-item {
+  font-size: 13px;
+  color: #374151;
+}

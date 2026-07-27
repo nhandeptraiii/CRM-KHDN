@@ -1,0 +1,219 @@
+/* =========================
+   Variables (Viettel Theme Palette)
+========================= */
+$primary: #EE0033;
+$primary-hover: #C8002B;
+$text-main: #111827;
+$text-label: #374151;
+$border: #d1d5db;
+$error: #ef4444;
+$bg-input: #ffffff;
+$bg-overlay: rgba(17, 24, 39, 0.4);
+
+.modal-overlay,
+.modal-box,
+.modal-box * {
+    box-sizing: border-box;
+}
+
+/* =========================
+   MODAL OVERLAY
+========================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(15, 23, 42, 0.55); // đậm hơn
+  backdrop-filter: blur(4px);
+
+  z-index: 9999; // 👈 luôn trên sidebar
+
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s ease;
+
+  &.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* =========================
+   MODAL BOX
+========================= */
+.modal-box {
+    background: #ffffff;
+    width: min(520px, calc(100vw - 24px));
+  max-width: 100%;
+  max-height: 92vh;
+
+  overflow-y: auto;
+
+  border-radius: 16px;
+  padding: 28px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    animation: modalShow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+    h3 {
+        margin: 0 0 24px 0;
+        font-size: 22px;
+        font-weight: 700;
+        color: $text-main;
+        letter-spacing: -0.02em;
+    }
+}
+
+/* =========================
+   FORM ELEMENTS
+========================= */
+.form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+
+    .form-group {
+        flex: 1;
+        min-width: 0;
+    }
+}
+
+.form-group {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    label {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: $text-label;
+
+        .required {
+            color: $error;
+            margin-left: 2px;
+        }
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 12px 16px;
+        line-height: 1.5;
+        border-radius: 8px;
+        border: 1px solid $border;
+        font-size: 14px;
+        color: $text-main;
+        background-color: $bg-input;
+        transition: all 0.2s ease;
+        font-family: inherit;
+
+        &::placeholder {
+            color: #9ca3af;
+        }
+
+        &:hover:not(.input-error):not(:disabled) {
+            border-color: #9ca3af;
+        }
+
+        &:focus:not(:disabled) {
+            outline: none;
+            border-color: $primary;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(238, 0, 51, 0.1);
+        }
+
+        &.input-error {
+            border-color: $error;
+            background-color: #fef2f2;
+            color: #991b1b;
+
+            &:focus {
+                box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+            }
+        }
+
+        &:disabled {
+            background-color: #f3f4f6;
+            cursor: not-allowed;
+            color: #6b7280;
+        }
+    }
+}
+
+.error-text {
+    color: $error;
+    font-size: 13px;
+    margin-top: 6px;
+    font-weight: 500;
+}
+
+/* =========================
+   MODAL BUTTONS
+========================= */
+.modal-actions {
+    margin-top: 32px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+
+    button {
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s ease;
+    }
+
+    .cancel-btn {
+        background: #f3f4f6;
+        color: #4b5563;
+
+        &:hover {
+            background: #e5e7eb;
+            color: $text-main;
+        }
+    }
+
+    .save-btn {
+        background: $primary;
+        color: white;
+
+        &:hover {
+            background: $primary-hover;
+            box-shadow: 0 4px 6px -1px rgba(238, 0, 51, 0.3);
+        }
+    }
+}
+
+/* =========================
+   ANIMATION
+========================= */
+@keyframes modalShow {
+    from {
+        transform: scale(0.96) translateY(-10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.ql-container {
+  max-height: 200px;
+  overflow-y: auto;
+}

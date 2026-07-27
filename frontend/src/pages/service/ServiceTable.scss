@@ -1,0 +1,388 @@
+/* =========================
+   Variables (Viettel Theme Palette)
+========================= */
+$primary: #EE0033;
+$text-main: #111827;
+$text-muted: #6b7280;
+$border: #e5e7eb;
+$bg-table: #ffffff;
+$bg-hover: #f9fafb;
+$danger: #ef4444;
+$danger-light: #fef2f2;
+
+.table-container {
+    background: $bg-table;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border: 1px solid $border;
+    overflow-x: auto;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin-top: 20px;
+}
+
+.service-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+
+    th,
+    td {
+        padding: 16px 20px;
+        border-bottom: 1px solid $border;
+        vertical-align: middle;
+        text-align: left;
+    }
+
+    th.text-center,
+    td.text-center {
+        text-align: center;
+    }
+
+    th.sortable {
+        cursor: pointer;
+        user-select: none;
+        transition: background 0.2s;
+
+        &:hover {
+            background-color: #f1f5f9;
+            color: $primary;
+        }
+
+        .sort-arrow {
+            color: #cbd5e1;
+            margin-left: 4px;
+            font-size: 12px;
+        }
+    }
+
+    th {
+        background-color: #f9fafb;
+        color: $text-muted;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 0.05em;
+    }
+
+    tbody tr {
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background-color: $bg-hover;
+        }
+
+        &:last-child td {
+            border-bottom: none;
+        }
+    }
+
+    .font-medium {
+        font-weight: 500;
+        color: $text-main;
+    }
+
+    .font-bold {
+        font-weight: 600;
+    }
+
+    .highlight-code {
+        color: $primary;
+    }
+
+    td {
+        color: #374151;
+    }
+}
+
+.category-badge {
+    display: inline-flex;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    background: #f3f4f6;
+    color: #4b5563;
+    border: 1px solid #e5e7eb;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+    min-width: 120px;
+
+    &.active {
+        background: #dcfce7;
+        color: #15803d;
+    }
+
+    &.inactive {
+        background: #fee2e2;
+        color: #b91c1c;
+    }
+}
+
+.action-btns {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    vertical-align: middle;
+
+    button {
+        border: none;
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        padding: 0;
+        margin: 0;
+
+        svg {
+            width: 16px;
+            height: 16px;
+            display: block;
+        }
+    }
+
+    /* Đã cập nhật tone vàng sang trọng cho nút View */
+    .view-btn {
+        background: #fef3c7;
+        color: #d97706;
+
+        &:hover {
+            background: #fde68a;
+            transform: translateY(-1px);
+        }
+    }
+
+    .edit-btn {
+        background: #e0e7ff;
+        color: #4f46e5;
+
+        &:hover {
+            background: #c7d2fe;
+            transform: translateY(-1px);
+        }
+    }
+
+    .delete-btn {
+        background: $danger-light;
+        color: $danger;
+
+        &:hover {
+            background: #fecaca;
+            transform: translateY(-1px);
+        }
+    }
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px !important;
+    color: $text-muted;
+    font-style: italic;
+}
+
+/* =========================
+   PAGINATION (PHÂN TRANG)
+========================= */
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 16px 20px;
+    gap: 12px;
+    border-top: 1px solid $border;
+    background-color: white;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+    .page-btn {
+        height: 36px;
+        padding: 0 16px;
+        background-color: white;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 500;
+        color: #374151;
+        cursor: pointer;
+        width: auto !important;
+        min-width: max-content;
+        flex: 0 0 auto !important;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+
+        &:hover:not(:disabled) {
+            background-color: #f9fafb;
+            border-color: #9ca3af;
+            color: $text-main;
+        }
+
+        &:disabled {
+            color: #9ca3af;
+            background-color: #f3f4f6;
+            border-color: #e5e7eb;
+            cursor: not-allowed;
+        }
+    }
+
+    .page-numbers {
+        display: flex;
+        gap: 6px;
+
+        .page-num {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            background: transparent;
+            font-size: 13px;
+            font-weight: 500;
+            color: #4b5563;
+            cursor: pointer;
+            transition: all 0.2s;
+            padding: 0;
+            margin: 0;
+
+            &:hover:not(.active) {
+                background-color: #f3f4f6;
+            }
+
+            &.active {
+                background-color: $primary;
+                color: white;
+                font-weight: 600;
+                box-shadow: 0 2px 6px rgba(238, 0, 51, 0.25);
+            }
+        }
+    }
+}
+
+// Style cho Modal Xác nhận Xóa Dịch vụ Tùy chỉnh
+.delete-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+}
+
+.delete-modal-box {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 32px 24px;
+    width: 90%;
+    max-width: 380px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    animation: modalFadeIn 0.3s ease-out;
+
+    @keyframes modalFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+.delete-modal-icon-container {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 12px;
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: #fecaca;
+        opacity: 0.5;
+        filter: blur(8px);
+        z-index: -1;
+    }
+}
+
+.delete-modal-title {
+    margin-top: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.delete-modal-text {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+.delete-modal-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.delete-modal-btn {
+    flex: 1;
+    padding: 12px 0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border: none;
+}
+
+.cancel-btn {
+    background-color: #f3f4f6;
+    color: #374151;
+
+    &:hover {
+        background-color: #e5e7eb;
+    }
+}
+
+.delete-btn {
+    background-color: #ef4444;
+    color: #fff;
+
+    &:hover {
+        background-color: #dc2626;
+    }
+}

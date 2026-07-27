@@ -1,0 +1,131 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7a8b-9c0d-excelpostman123",
+    "name": "2.1 CRM Enterprises (Excel Import/Export)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Download Excel Template",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/enterprises/import/template",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "enterprises",
+            "import",
+            "template"
+          ]
+        },
+        "description": "Tải file mẫu Excel trống để người dùng nhập dữ liệu doanh nghiệp.\nSau khi gửi Request, hãy bấm biểu tượng mũi tên cạnh nút Send -> Chọn 'Send and Download' để lưu file .xlsx về máy."
+      },
+      "response": []
+    },
+    {
+      "name": "2. Import Enterprises from Excel",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": [],
+              "description": "Vui lòng chọn file .xlsx"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/enterprises/import",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "enterprises",
+            "import"
+          ]
+        },
+        "description": "Tải lên file Excel để tạo hàng loạt Doanh nghiệp.\nThân request (Body) sử dụng 'form-data'. Trường 'file' (Type là File) dùng để chọn file .xlsx từ máy tính."
+      },
+      "response": []
+    },
+    {
+      "name": "3. Export Enterprises to Excel",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/enterprises/export?keyword=&status=&industry=",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "enterprises",
+            "export"
+          ],
+          "query": [
+            {
+              "key": "keyword",
+              "value": "",
+              "description": "Tên Doanh nghiệp hoặc Mã số thuế"
+            },
+            {
+              "key": "status",
+              "value": "",
+              "description": "ACTIVE_CUSTOMER, PROSPECT..."
+            },
+            {
+              "key": "industry",
+              "value": "",
+              "description": "IT_SOFTWARE, BANKING_FINANCE_INSURANCE..."
+            }
+          ]
+        },
+        "description": "Xuất toàn bộ dữ liệu Doanh nghiệp ra file Excel.\nCó thể dùng query parameters để lọc dữ liệu xuất ra.\nSau khi gửi Request, hãy bấm biểu tượng mũi tên cạnh nút Send -> Chọn 'Send and Download' để lưu file .xlsx về máy."
+      },
+      "response": []
+    }
+  ]
+}

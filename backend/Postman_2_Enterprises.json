@@ -1,0 +1,231 @@
+{
+  "info": {
+    "_postman_id": "b1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6e",
+    "name": "2. CRM Enterprises",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Create Enterprise",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Công ty TNHH Phần mềm Viettel\",\n  \"taxCode\": \"0101234567\",\n  \"taxAuthority\": \"Chi cục thuế Quận Cầu Giấy\",\n  \"industry\": \"IT_SOFTWARE\",\n  \"employeeCount\": 500,\n  \"address\": \"D29 Phạm Văn Bạch, Cầu Giấy, HN\",\n  \"phone\": \"0988123456\",\n  \"website\": \"viettelsoftware.com\",\n  \"establishedDate\": \"2010-05-15\",\n  \"type\": \"HKD\",\n  \"revenueRange\": \"FROM_500M_TO_1B\",\n  \"communeId\": 1\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/enterprises",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "enterprises"
+          ]
+        }
+      }
+    },
+    {
+      "name": "1.1. Get All Industries",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/enterprises/industries",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "enterprises",
+            "industries"
+          ]
+        }
+      }
+    },
+    {
+      "name": "2. Get All Enterprises (Pagination & Filter)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/enterprises?page=0&size=10&keyword=&status=&industry=&typeStr=SME&regionStr=CTO",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "enterprises"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "0"
+            },
+            {
+              "key": "size",
+              "value": "10"
+            },
+            {
+              "key": "keyword",
+              "value": ""
+            },
+            {
+              "key": "status",
+              "value": "",
+              "description": "PROSPECT, ACTIVE_CUSTOMER, CHURNED"
+            },
+            {
+              "key": "industry",
+              "value": "",
+              "description": "IT_SOFTWARE, HEALTHCARE, EDUCATION..."
+            },
+            {
+              "key": "typeStr",
+              "value": "SME"
+            },
+            {
+              "key": "regionStr",
+              "value": "CTO"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "3. Get Enterprise Detail by ID",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/enterprises/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "enterprises",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "4. Update Enterprise",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Công ty TNHH Phần mềm Viettel (Updated)\",\n  \"status\": \"ACTIVE_CUSTOMER\",\n  \"taxAuthority\": \"Cục thuế Thành phố Hà Nội\",\n  \"employeeCount\": 600,\n  \"type\": \"HKD\",\n  \"revenueRange\": \"OVER_1B\",\n  \"communeId\": 1\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/enterprises/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "enterprises",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "5. Delete Enterprise (ADMIN ONLY)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/enterprises/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "enterprises",
+            "1"
+          ]
+        }
+      }
+    }
+  ]
+}

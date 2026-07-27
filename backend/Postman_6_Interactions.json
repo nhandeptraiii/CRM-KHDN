@@ -1,0 +1,173 @@
+{
+  "info": {
+    "_postman_id": "f1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c72",
+    "name": "6. CRM Interactions (Logs)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Create Interaction (JSON)",
+      "request": {
+        "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{access_token}}", "type": "string" } ] },
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"enterpriseId\": 1,\n  \"contactId\": 1,\n  \"interactionType\": \"PHONE_CALL\",\n  \"result\": \"CLOSED_WON\",\n  \"interactionTime\": \"10/05/2026 14:30\",\n  \"location\": \"Qua điện thoại\",\n  \"description\": \"KH đã đồng ý ký hợp đồng\",\n  \"newUsages\": [\n    {\n      \"viettelServiceId\": 1,\n      \"contractNumber\": \"HD1000\",\n      \"startDate\": \"2026-05-10\",\n      \"quantity\": 100\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/interactions",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "8080",
+          "path": [ "interactions" ]
+        }
+      }
+    },
+    {
+      "name": "1.1 Create Interaction With Photos (Multipart)",
+      "request": {
+        "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{access_token}}", "type": "string" } ] },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "enterpriseId", "value": "1", "type": "text" },
+            { "key": "contactId", "value": "1", "type": "text" },
+            { "key": "consultantId", "value": "1", "type": "text" },
+            { "key": "interactionType", "value": "OFFLINE_MEETING", "type": "text" },
+            { "key": "result", "value": "CLOSED_WON", "type": "text" },
+            { "key": "interactionTime", "value": "2026-05-10T14:30:00Z", "type": "text" },
+            { "key": "location", "value": "Trụ sở Doanh nghiệp", "type": "text" },
+            { "key": "description", "value": "Gặp trực tiếp khách hàng ký hợp đồng", "type": "text" },
+            { "key": "newUsages", "value": "[{\"viettelServiceId\":1,\"contractNumber\":\"HD1000\",\"startDate\":\"2026-05-10\",\"quantity\":100,\"revenue\":10000000}]", "type": "text", "description": "JSON chuỗi danh sách dịch vụ" },
+            { "key": "photos", "type": "file", "src": [], "description": "Chọn file ảnh gặp mặt (tối đa 4 ảnh)" }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/interactions",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "8080",
+          "path": [ "interactions" ]
+        }
+      }
+    },
+    {
+      "name": "2. Get All Interactions (Filter)",
+      "request": {
+        "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{access_token}}", "type": "string" } ] },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/interactions?enterpriseId=&consultantId=&type=&result=&page=0&size=10",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "8080",
+          "path": [ "interactions" ],
+          "query": [
+            { "key": "enterpriseId", "value": "" },
+            { "key": "consultantId", "value": "" },
+            { "key": "type", "value": "", "description": "PHONE_CALL, EMAIL_QUOTE..." },
+            { "key": "result", "value": "", "description": "PENDING, CLOSED_WON, NEED_FOLLOW_UP..." },
+            { "key": "page", "value": "0" },
+            { "key": "size", "value": "10" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "3. Get Interaction By ID",
+      "request": {
+        "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{access_token}}", "type": "string" } ] },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/interactions/1",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "8080",
+          "path": [ "interactions", "1" ]
+        }
+      }
+    },
+    {
+      "name": "4. Update Interaction (JSON)",
+      "request": {
+        "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{access_token}}", "type": "string" } ] },
+        "method": "PUT",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"interactionTime\": \"10/05/2026 14:35\",\n  \"location\": \"Trụ sở KH\",\n  \"description\": \"Bổ sung ghi chú: Khách yêu cầu VAT\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/interactions/1",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "8080",
+          "path": [ "interactions", "1" ]
+        }
+      }
+    },
+    {
+      "name": "4.1 Update Interaction With Photos (Multipart)",
+      "request": {
+        "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{access_token}}", "type": "string" } ] },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "interactionTime", "value": "2026-05-10T15:00:00Z", "type": "text" },
+            { "key": "location", "value": "Quán Cafe / Trụ sở KH", "type": "text" },
+            { "key": "description", "value": "Bổ sung hình ảnh biên bản làm việc và ghi chú mới", "type": "text" },
+            { "key": "photos", "type": "file", "src": [], "description": "Chọn file ảnh (có thể chọn nhiều file)" }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/interactions/1",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "8080",
+          "path": [ "interactions", "1" ]
+        }
+      }
+    },
+    {
+      "name": "5. Delete Interaction (ADMIN ONLY)",
+      "request": {
+        "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{access_token}}", "type": "string" } ] },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/interactions/1",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "8080",
+          "path": [ "interactions", "1" ]
+        }
+      }
+    },
+    {
+      "name": "6. Get Enterprise Interaction Summary",
+      "request": {
+        "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{access_token}}", "type": "string" } ] },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/interactions/enterprise-summary?page=0&size=10",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "8080",
+          "path": [ "interactions", "enterprise-summary" ],
+          "query": [
+            { "key": "page", "value": "0" },
+            { "key": "size", "value": "10" }
+          ]
+        }
+      }
+    }
+  ]
+}

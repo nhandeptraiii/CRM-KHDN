@@ -1,0 +1,57 @@
+body {
+  margin: 0;
+}
+.mainLayout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* phần bên phải sidebar */
+.mainContent {
+  margin-left: 240px;
+  width: calc(100% - 240px);
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  transition: all 0.3s ease;
+}
+.fullWidth {
+  margin-left: 0;
+  width: 100%;
+}
+/* nội dung page */
+.pageContent {
+  padding: 16px;
+  background: #f7f7f7;
+  flex: 1;
+
+  margin-top: 64px;
+  overflow-y: auto;
+}
+/* mobile */
+.mobilePage {
+  margin-top: 56px;
+  padding: 12px;
+}
+
+// /* ================= MOBILE ================= */
+// @media (max-width: 768px) {
+//   .mainLayout {
+//     flex-direction: column;
+//   }
+
+//   .mainContent {
+//     margin-left: 0;
+//     width: 100%;
+//   }
+
+//   .pageContent {
+//     margin-top: 56px; // đồng bộ header mobile
+//     padding: 12px;
+//   }
+// }
+.Toastify__toast-container {
+  z-index: 99999 !important;
+}

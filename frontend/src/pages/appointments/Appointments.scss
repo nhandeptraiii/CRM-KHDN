@@ -1,0 +1,215 @@
+/* =========================
+   VARIABLES
+========================= */
+$primary: #EE0033;
+$primary-light: #fff1f2;
+$text-main: #111827;
+$border: #e5e7eb;
+$bg: #ffffff;
+
+/* =========================
+   PAGE ROOT
+========================= */
+.appointment-page {
+  padding: 20px;
+}
+
+/* =========================
+   HEADER
+========================= */
+.appointment-page .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: $text-main;
+  }
+}
+
+/* =========================
+   HEADER ACTIONS (1 HÀNG)
+========================= */
+.appointment-page .header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+
+/* =========================
+   SEARCH BOX
+========================= */
+.appointment-page .search-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid $border;
+  border-radius: 8px;
+  padding: 6px 10px;
+  background: $bg;
+
+  flex: 1;
+  min-width: 220px;
+  max-width: 350px;
+
+  input {
+    border: none;
+    outline: none;
+    margin-left: 6px;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .icon-search {
+    width: 18px;
+    height: 18px;
+    stroke: #6b7280;
+  }
+
+  .icon-clear {
+    width: 18px;
+    height: 18px;
+    stroke: #6b7280;
+    cursor: pointer;
+  }
+}
+
+/* =========================
+   DROPDOWN
+========================= */
+.appointment-page .custom-dropdown {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* TRIGGER */
+.appointment-page .dropdown-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  min-width: 180px;
+  height: 40px;
+
+  padding: 0 12px;
+  border: 1px solid $border;
+  border-radius: 8px;
+  background: $bg;
+  cursor: pointer;
+
+  font-size: 14px;
+
+  span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &.active {
+    border-color: $primary;
+    box-shadow: 0 0 0 2px rgba(238, 0, 51, 0.1);
+  }
+}
+
+/* ICON */
+.appointment-page .icon-chevron {
+  transition: 0.2s;
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+.appointment-page .icon-chevron.open {
+  transform: rotate(180deg);
+}
+
+/* =========================
+   DROPDOWN MENU
+========================= */
+.appointment-page .dropdown-menu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+
+  width: 100%;
+  max-height: 240px;
+
+  background: $bg;
+  border-radius: 10px;
+  border: 1px solid $border;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  flex-direction: column;
+
+  z-index: 1000;
+  overflow: hidden;
+}
+
+/* LIST */
+.appointment-page .dropdown-list {
+  flex: 1;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 6px;
+  }
+}
+
+/* ITEM */
+.appointment-page .dropdown-item {
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 14px;
+
+  &:hover {
+    background: #f9fafb;
+  }
+
+  &.selected {
+    background: $primary-light;
+    color: $primary;
+    font-weight: 600;
+  }
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.appointment-page .add-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: $primary;
+  color: #fff;
+  font-weight: 500;
+  height: 40px;
+
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+/* =========================
+   TABLE CARD
+========================= */
+.appointment-page .table-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid $border;
+}

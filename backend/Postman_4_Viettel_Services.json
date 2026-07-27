@@ -1,0 +1,98 @@
+{
+  "info": {
+    "_postman_id": "d1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c70",
+    "name": "4. CRM Viettel Services Catalog",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Create Service (ADMIN)",
+      "request": {
+        "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{access_token}}", "type": "string" } ] },
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"serviceCode\": \"V-CA\",\n  \"serviceName\": \"Chữ ký số Viettel-CA\",\n  \"category\": \"CHUNG_NHAN_SO\",\n  \"isActive\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/viettel-services",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "8080",
+          "path": [ "viettel-services" ]
+        }
+      }
+    },
+    {
+      "name": "2. Get All Services (Pagination & Filter)",
+      "request": {
+        "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{access_token}}", "type": "string" } ] },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/viettel-services?page=0&size=10&keyword=&isActive=",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "8080",
+          "path": [ "viettel-services" ],
+          "query": [
+             { "key": "page", "value": "0" },
+             { "key": "size", "value": "10" },
+             { "key": "keyword", "value": "" },
+             { "key": "isActive", "value": "" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "3. Get Service By ID",
+      "request": {
+        "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{access_token}}", "type": "string" } ] },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/viettel-services/1",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "8080",
+          "path": [ "viettel-services", "1" ]
+        }
+      }
+    },
+    {
+      "name": "4. Update Service (ADMIN)",
+      "request": {
+        "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{access_token}}", "type": "string" } ] },
+        "method": "PUT",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"serviceName\": \"Chữ ký số Viettel-CA (Cập nhật)\",\n  \"isActive\": false\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/viettel-services/1",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "8080",
+          "path": [ "viettel-services", "1" ]
+        }
+      }
+    },
+    {
+      "name": "5. Delete Service (ADMIN)",
+      "request": {
+        "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{access_token}}", "type": "string" } ] },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/viettel-services/1",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "8080",
+          "path": [ "viettel-services", "1" ]
+        }
+      }
+    }
+  ]
+}

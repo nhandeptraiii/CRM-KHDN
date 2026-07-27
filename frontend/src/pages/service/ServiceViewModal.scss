@@ -1,0 +1,260 @@
+/* =========================
+   Variables (Viettel Theme Palette)
+========================= */
+$primary: #EE0033;
+$primary-hover: #cc002c;
+$text-main: #111827;
+$text-muted: #6b7280;
+$border: #e5e7eb;
+$bg-light: #f8fafc;
+
+.view-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(17, 24, 39, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.view-modal-box {
+    width: 900px;
+    max-width: 98vw;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    max-height: 96vh;
+    overflow: hidden;
+    border-top: 4px solid $primary;
+
+    .view-modal-header {
+        padding: 20px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid $border;
+
+        h2 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 700;
+            color: $text-main;
+            letter-spacing: -0.01em;
+            text-transform: uppercase;
+        }
+
+        .btn-close-icon {
+            background: transparent;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+
+            &:hover {
+                background-color: #fef2f2;
+                color: $primary;
+            }
+        }
+    }
+
+    .view-modal-body {
+        padding: 32px 40px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            background-color: $bg-light;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid $border;
+
+            .meta-item {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                &.full-width {
+                    grid-column: 1 / -1;
+                    margin-top: 4px;
+                    border-top: 1px dashed #cbd5e1;
+                    padding-top: 16px;
+                }
+
+                .meta-label {
+                    color: $text-muted;
+                    font-size: 12px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
+                }
+
+                .meta-code {
+                    color: $primary;
+                    font-weight: 700;
+                    font-size: 14px;
+                    font-family: monospace;
+                    background-color: #fff;
+                    border: 1px solid #e2e8f0;
+                    padding: 4px 10px;
+                    border-radius: 6px;
+                    width: fit-content;
+                }
+
+                .meta-name {
+                    color: $text-main;
+                    font-weight: 700;
+                    font-size: 16px;
+                }
+
+                .status-badge-view {
+                    padding: 4px 12px;
+                    border-radius: 6px;
+                    font-size: 13px;
+                    font-weight: 600;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+
+                    .status-dot {
+                        width: 6px;
+                        height: 6px;
+                        border-radius: 50%;
+                    }
+
+                    &.active {
+                        background-color: #dcfce7;
+                        color: #166534;
+                        border: 1px solid #bbf7d0;
+
+                        .status-dot {
+                            background-color: #22c55e;
+                        }
+                    }
+
+                    &.inactive {
+                        background-color: #fee2e2;
+                        color: #991b1b;
+                        border: 1px solid #fecaca;
+
+                        .status-dot {
+                            background-color: #ef4444;
+                        }
+                    }
+                }
+            }
+        }
+
+        .desc-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            .desc-title {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                color: $text-main;
+                font-weight: 700;
+                font-size: 15px;
+                text-transform: uppercase;
+
+                svg {
+                    stroke: $primary;
+                }
+            }
+
+            .desc-content-box {
+                background-color: #ffffff;
+                border-radius: 8px;
+                border: 1px solid $border;
+                border-left: 3px solid $primary;
+                padding: 16px 10px;
+                min-height: 120px;
+                max-height: 300px;
+                overflow-y: auto;
+
+                color: #374151;
+                font-size: 14px;
+                line-height: 1.6;
+
+                /* === BỘ RULE RESPONSIVE (TỰ ĐỘNG XUỐNG DÒNG) === */
+                white-space: pre-wrap !important;
+                /* Giữ ngắt dòng Enter của editor, nhưng vẫn tự động rớt dòng khi hết chỗ */
+                word-break: normal !important;
+                /* Mặc định của trình duyệt: Tự rớt dòng khi gặp khoảng trắng */
+                overflow-wrap: break-word !important;
+                /* Chỉ bẻ ngang chữ nếu gặp 1 cái link URL quá dài không có khoảng trắng */
+
+                * {
+                    white-space: pre-wrap !important;
+                    word-break: normal !important;
+                    overflow-wrap: break-word !important;
+                }
+
+                p {
+                    margin-bottom: 8px;
+                }
+
+                ul,
+                ol {
+                    padding-left: 20px;
+                    margin-bottom: 10px;
+                }
+
+                .empty-desc {
+                    font-style: italic;
+                    color: #9ca3af;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 60px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .view-modal-footer {
+        padding: 16px 24px;
+        border-top: 1px solid $border;
+        display: flex;
+        justify-content: flex-end;
+        background-color: #ffffff;
+
+        .btn-close-view {
+            padding: 10px 28px;
+            background-color: #ffffff;
+            color: $text-main;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s ease;
+
+            &:hover {
+                border-color: $primary;
+                color: $primary;
+                background-color: #fff5f6;
+            }
+        }
+    }
+}

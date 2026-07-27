@@ -1,0 +1,62 @@
+@use "./EnterpriseModal.scss";
+
+.export-modal-box {
+  width: min(560px, calc(100vw - 24px));
+}
+
+.export-section {
+  margin-top: 20px;
+}
+
+.section-title {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: #EE0033;
+    background: #fef2f2;
+  }
+
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+
+    accent-color: #EE0033;
+    cursor: pointer;
+  }
+
+  span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #111827;
+  }
+}
+
+@media (max-width: 640px) {
+  .checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+}

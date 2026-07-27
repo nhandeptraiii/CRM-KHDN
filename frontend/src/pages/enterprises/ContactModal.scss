@@ -1,0 +1,54 @@
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.cancel-btn {
+  background: #e5e7eb;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.save-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+/* =========================
+   CHECKBOX FIX
+========================= */
+.form-group.checkbox {
+  margin-top: 10px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #111827;
+}
+
+/* RESET checkbox bị dính style input */
+.checkbox-label input[type="checkbox"] {
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0;
+  cursor: pointer;
+
+  /* reset nếu bị inherit */
+  flex: 0 0 auto;
+}
+
+/* text */
+.checkbox-label span {
+  font-weight: 500;
+}

@@ -1,0 +1,92 @@
+{
+  "info": {
+    "_postman_id": "c1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6f",
+    "name": "3. CRM Enterprise Contacts",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Create Contact",
+      "request": {
+        "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{access_token}}", "type": "string" } ] },
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Nguyễn Văn A\",\n  \"position\": \"Giám đốc\",\n  \"email\": \"nguyenvana@gmail.com\",\n  \"phone\": \"0123456789\",\n  \"isPrimary\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/enterprises/1/contacts",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "8080",
+          "path": [ "enterprises", "1", "contacts" ]
+        }
+      }
+    },
+    {
+      "name": "2. Get Contacts of Enterprise",
+      "request": {
+        "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{access_token}}", "type": "string" } ] },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/enterprises/1/contacts",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "8080",
+          "path": [ "enterprises", "1", "contacts" ]
+        }
+      }
+    },
+    {
+      "name": "3. Get Contact By ID",
+      "request": {
+        "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{access_token}}", "type": "string" } ] },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/enterprises/1/contacts/1",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "8080",
+          "path": [ "enterprises", "1", "contacts", "1" ]
+        }
+      }
+    },
+    {
+      "name": "4. Update Contact",
+      "request": {
+        "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{access_token}}", "type": "string" } ] },
+        "method": "PUT",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"position\": \"Tổng Giám đốc\",\n  \"isPrimary\": false\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/enterprises/1/contacts/1",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "8080",
+          "path": [ "enterprises", "1", "contacts", "1" ]
+        }
+      }
+    },
+    {
+      "name": "5. Delete Contact (ADMIN ONLY)",
+      "request": {
+        "auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{access_token}}", "type": "string" } ] },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/enterprises/1/contacts/1",
+          "protocol": "http",
+          "host": [ "localhost" ],
+          "port": "8080",
+          "path": [ "enterprises", "1", "contacts", "1" ]
+        }
+      }
+    }
+  ]
+}

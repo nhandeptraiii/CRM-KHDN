@@ -1,0 +1,250 @@
+{
+  "info": {
+    "_postman_id": "c2b3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e",
+    "name": "8. CRM Appointments",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Create Appointment",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"enterpriseId\": 1,\n  \"contactId\": 1,\n  \"appointmentType\": \"OFFLINE_MEETING\",\n  \"scheduledTime\": \"15/05/2026 09:00\",\n  \"location\": \"Trụ sở Viettel\",\n  \"purpose\": \"Tư vấn triển khai CRM\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/appointments",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "appointments"
+          ]
+        }
+      }
+    },
+    {
+      "name": "2. Get All Appointments (Search & Filter)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/appointments?page=0&size=10&status=&enterpriseId=",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "appointments"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "0"
+            },
+            {
+              "key": "size",
+              "value": "10"
+            },
+            {
+              "key": "status",
+              "value": "",
+              "description": "SCHEDULED, REMINDED, CONFIRMED, REJECTED"
+            },
+            {
+              "key": "enterpriseId",
+              "value": ""
+            },
+            {
+              "key": "consultantId",
+              "value": "",
+              "description": "Lọc theo AM (Admin mới dùng hiệu quả)"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "3. Get Appointment Detail by ID",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/appointments/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "appointments",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "4. Update / Reschedule Appointment",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"appointmentType\": \"ONLINE_MEETING\",\n  \"scheduledTime\": \"16/05/2026 14:30\",\n  \"location\": \"Google Meet\",\n  \"purpose\": \"Dời lịch tư vấn sang online\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/appointments/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "appointments",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "5. Confirm Appointment (AM đi gặp khách hàng)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "result",
+              "value": "CLOSED_WON",
+              "description": "PENDING, CLOSED_WON, NEED_FOLLOW_UP",
+              "type": "text"
+            },
+            {
+              "key": "description",
+              "value": "Khách hàng đồng ý triển khai quy mô 500 users",
+              "type": "text"
+            },
+            {
+              "key": "photos",
+              "type": "file",
+              "src": []
+            },
+            {
+              "key": "newUsages",
+              "value": "[{\"viettelServiceId\": 1, \"contractNumber\": \"HD1000\", \"startDate\": \"2026-05-10\", \"quantity\": 100}]",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/appointments/1/confirm",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "appointments",
+            "1",
+            "confirm"
+          ]
+        }
+      }
+    },
+    {
+      "name": "6. Reject / Cancel Appointment (Khách từ chối/Huỷ hẹn)",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{access_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/appointments/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "appointments",
+            "1"
+          ]
+        }
+      }
+    }
+  ]
+}

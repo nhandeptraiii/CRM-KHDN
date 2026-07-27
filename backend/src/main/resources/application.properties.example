@@ -1,0 +1,30 @@
+# Server
+server.port=8080
+
+# MySQL
+# API can still format output for business timezone; persistence stays UTC.
+spring.jackson.time-zone=Asia/Ho_Chi_Minh
+spring.datasource.url=jdbc:mysql://localhost:3306/crm_viettel_khdn?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true
+spring.datasource.username=root
+spring.datasource.password=your_database_password_here
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# JPA
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+spring.jpa.properties.hibernate.jdbc.time_zone=UTC
+
+# JWT
+crm.jwt.base64-secret=your_strong_base64_secret_key_needs_to_be_at_least_256_bits_long
+crm.jwt.token-validity-in-seconds=86400
+
+# Upload
+spring.servlet.multipart.max-file-size=5MB
+spring.servlet.multipart.max-request-size=5MB
+
+# Appointment reminder scheduler
+# 900000 ms = 15 minutes
+crm.scheduler.delay-ms=900000
+# Total matching window in minutes (30 => +/-15 around each reminder target)
+crm.appointment.reminder-window-minutes=30

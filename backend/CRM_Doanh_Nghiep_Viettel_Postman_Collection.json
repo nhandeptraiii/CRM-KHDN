@@ -1,0 +1,522 @@
+{
+	"info": {
+		"_postman_id": "0254c0e6-99cf-4cb6-a6fb-1ab91aaabe02",
+		"name": "CRM DN - Viettel (Phase 1 & 2)",
+		"description": "Bộ Collection dùng để test API Quản lý doanh nghiệp, Nhân sự và Phân quyền.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Xác thực (Auth)",
+			"item": [
+				{
+					"name": "Đăng nhập (Lấy Token)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if(jsonData.data && jsonData.data.accessToken) {",
+									"    pm.collectionVariables.set(\"accessToken\", jsonData.data.accessToken);",
+									"    console.log(\"Saved Token: \" + jsonData.data.accessToken);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"admin@viettel.com\",\n  \"password\": \"Admin@123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Đăng xuất (Thu hồi Token)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2. Quản Lý Vai Trò (Roles - Chỉ ADMIN)",
+			"item": [
+				{
+					"name": "Lấy danh sách Role",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/roles",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tạo Role Mới",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"VIEWER\",\n  \"description\": \"Chỉ xem dữ liệu\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/roles",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gán Role cho User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"role\": \"CONSULTANT\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/roles/{{userId}}/assign",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"roles",
+								"{{userId}}",
+								"assign"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Thu hồi Role khỏi User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"role\": \"VIEWER\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/roles/{{userId}}/revoke",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"roles",
+								"{{userId}}",
+								"revoke"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3. Quản Lý Nhân Sự (Users - Chỉ ADMIN)",
+			"item": [
+				{
+					"name": "Tạo Nhân viên (User)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if(jsonData.data && jsonData.data.id) {",
+									"    pm.collectionVariables.set(\"userId\", jsonData.data.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fullName\": \"Trần Văn Tư Vấn\",\n  \"email\": \"tuvan@viettel.com\",\n  \"phone\": \"0988123456\",\n  \"password\": \"Tuvan@123\",\n  \"status\": \"ACTIVE\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy DS Nhân viên",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users?page=0&size=10&keyword=Trần&role=CONSULTANT",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "keyword",
+									"value": "Trần"
+								},
+								{
+									"key": "role",
+									"value": "CONSULTANT"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy User theo ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Xóa User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users/{{userId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4. Quản Lý Doanh Nghiệp (Enterprises)",
+			"item": [
+				{
+					"name": "Tạo Doanh Nghiệp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"if(jsonData.data && jsonData.data.id) {",
+									"    pm.collectionVariables.set(\"enterpriseId\", jsonData.data.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Công ty Cổ phần VNG\",\n  \"taxCode\": \"0303644911\",\n  \"industry\": \"Công nghệ thông tin\",\n  \"employeeCount\": 3000,\n  \"address\": \"Z06 Đường số 13, Tân Thuận Đông, Quận 7, TP HCM\",\n  \"website\": \"vng.com.vn\",\n  \"establishedDate\": \"2004-09-09\",\n  \"phone\": \"028 3962 3888\",\n  \"note\": \"Khách hàng VIP, tiềm năng bán chéo Cloud\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/enterprises",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"enterprises"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy Danh sách Doanh Nghiệp (Có Phân trang & Lọc)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/enterprises?page=0&size=10&keyword=VNG&status=PROSPECT",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"enterprises"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Số trang (Bắt đầu từ 0)"
+								},
+								{
+									"key": "size",
+									"value": "10",
+									"description": "Số lượng mỗi trang"
+								},
+								{
+									"key": "keyword",
+									"value": "VNG",
+									"description": "Tìm theo Tên, MST, Số đt, Mã DN (Tùy chọn)"
+								},
+								{
+									"key": "status",
+									"value": "PROSPECT",
+									"description": "PROSPECT, ACTIVE_CUSTOMER, CHURNED (Tùy chọn)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lấy Chi tiết Doanh Nghiệp (Bằng ID)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/enterprises/{{enterpriseId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"enterprises",
+								"{{enterpriseId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cập nhật Doanh Nghiệp (Bằng ID)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"ACTIVE_CUSTOMER\",\n  \"employeeCount\": 3200,\n  \"note\": \"Đã ký hợp đồng dịch vụ AWS Cloud\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/enterprises/{{enterpriseId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"enterprises",
+								"{{enterpriseId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Xóa Doanh Nghiệp (Chỉ ADMIN)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/enterprises/{{enterpriseId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"enterprises",
+								"{{enterpriseId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "accessToken",
+			"value": ""
+		},
+		{
+			"key": "enterpriseId",
+			"value": "1"
+		},
+		{
+			"key": "userId",
+			"value": "1"
+		}
+	]
+}

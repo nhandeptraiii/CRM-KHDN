@@ -1,0 +1,145 @@
+.enterprise-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  th, td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+    th:nth-child(1), td:nth-child(1) { width: 60px; }   // STT
+    th:nth-child(2), td:nth-child(2) { width: 450px; }  // Tên DN
+    th:nth-child(3), td:nth-child(3) { width: 130px; }  // MST
+    th:nth-child(4), td:nth-child(4) { width: 70px; }  // Cụm
+    th:nth-child(5), td:nth-child(5) { width: 70px; }  // Loại
+    th:nth-child(6), td:nth-child(6) { width: 80px; }  // Nhân sự
+    th:nth-child(7), td:nth-child(7) { width: 120px; }  // Điện thoại
+    th:nth-child(8), td:nth-child(8) { width: 90px; }  // Action
+
+    // th:nth-child(3),
+    // th:nth-child(4),
+    // th:nth-child(5),
+    // th:nth-child(6),
+    // th:nth-child(7) {
+    //   text-align: center;
+    // }
+  td:last-child {
+    min-width: 150px;
+  }
+
+  th {
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .enterprise-name-wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .enterprise-name-cell {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .enterprise-inactive-text {
+    font-size: 12px;
+    color: #dc2626;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .potential-star {
+    color: #facc15;
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .action-btns {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .view-btn,
+  .delete-btn {
+    border: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    min-width: 56px;
+  }
+
+  .view-btn {
+    background: #e0f2fe;
+    color: #0369a1;
+  }
+
+  .delete-btn {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+
+  .page-btn {
+    padding: 6px 12px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+
+    &:hover:not(:disabled) {
+      border-color: #EE0033;
+      color: #EE0033;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+
+  .page-numbers {
+    display: flex;
+    gap: 6px;
+  }
+
+  .page-num {
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    cursor: pointer;
+
+    &:hover {
+      border-color: #EE0033;
+      color: #EE0033;
+    }
+
+    &.active {
+      background: #EE0033;
+      color: white;
+      border-color: #EE0033;
+      font-weight: 600;
+    }
+  }
+  .page-btn {
+  min-width: 40px;
+}
+}
